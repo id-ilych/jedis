@@ -560,7 +560,7 @@ public class Client extends BinaryClient implements Commands {
 
   @Override
   public void zcount(final String key, final double min, final double max) {
-    zcount(SafeEncoder.encode(key), min, max);
+    zcount(SafeEncoder.encode(key), toByteArray(min), toByteArray(max));
   }
 
   @Override
@@ -570,7 +570,7 @@ public class Client extends BinaryClient implements Commands {
 
   @Override
   public void zrangeByScore(final String key, final double min, final double max) {
-    zrangeByScore(SafeEncoder.encode(key), min, max);
+    zrangeByScore(SafeEncoder.encode(key), toByteArray(min), toByteArray(max));
   }
 
   @Override
@@ -581,24 +581,24 @@ public class Client extends BinaryClient implements Commands {
   @Override
   public void zrangeByScore(final String key, final double min, final double max, final int offset,
       int count) {
-    zrangeByScore(SafeEncoder.encode(key), min, max, offset, count);
+    zrangeByScore(SafeEncoder.encode(key), toByteArray(min), toByteArray(max), offset, count);
   }
 
   @Override
   public void zrangeByScoreWithScores(final String key, final double min, final double max) {
-    zrangeByScoreWithScores(SafeEncoder.encode(key), min, max);
+    zrangeByScoreWithScores(SafeEncoder.encode(key), toByteArray(min), toByteArray(max));
   }
 
   @Override
   public void zrangeByScoreWithScores(final String key, final double min, final double max,
       final int offset, final int count) {
-    zrangeByScoreWithScores(SafeEncoder.encode(key), min, max, offset,
+    zrangeByScoreWithScores(SafeEncoder.encode(key), toByteArray(min), toByteArray(max), offset,
       count);
   }
 
   @Override
   public void zrevrangeByScore(final String key, final double max, final double min) {
-    zrevrangeByScore(SafeEncoder.encode(key), max, min);
+    zrevrangeByScore(SafeEncoder.encode(key), toByteArray(max), toByteArray(min));
   }
 
   public void zrangeByScore(final String key, final String min, final String max, final int offset,
@@ -628,7 +628,7 @@ public class Client extends BinaryClient implements Commands {
   @Override
   public void zrevrangeByScore(final String key, final double max, final double min,
       final int offset, int count) {
-    zrevrangeByScore(SafeEncoder.encode(key), max, min, offset, count);
+    zrevrangeByScore(SafeEncoder.encode(key), toByteArray(max), toByteArray(min), offset, count);
   }
 
   public void zrevrangeByScore(final String key, final String max, final String min,
@@ -639,7 +639,7 @@ public class Client extends BinaryClient implements Commands {
 
   @Override
   public void zrevrangeByScoreWithScores(final String key, final double max, final double min) {
-    zrevrangeByScoreWithScores(SafeEncoder.encode(key), max, min);
+    zrevrangeByScoreWithScores(SafeEncoder.encode(key), toByteArray(max), toByteArray(min));
   }
 
   @Override
@@ -651,7 +651,7 @@ public class Client extends BinaryClient implements Commands {
   @Override
   public void zrevrangeByScoreWithScores(final String key, final double max, final double min,
       final int offset, final int count) {
-    zrevrangeByScoreWithScores(SafeEncoder.encode(key), max, min, offset,
+    zrevrangeByScoreWithScores(SafeEncoder.encode(key), toByteArray(max), toByteArray(min), offset,
       count);
   }
 
@@ -669,7 +669,7 @@ public class Client extends BinaryClient implements Commands {
 
   @Override
   public void zremrangeByScore(final String key, final double start, final double end) {
-    zremrangeByScore(SafeEncoder.encode(key), start, end);
+    zremrangeByScore(SafeEncoder.encode(key), toByteArray(start), toByteArray(end));
   }
 
   @Override
