@@ -682,12 +682,11 @@ public class PipeliningTest extends Assert {
     // zrevrangeByScore with offset and count
     {
       Pipeline pipeline = jedis.pipelined();
-      Response<Set<String>> range = pipeline.zrevrangeByScore("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 0, 1);
+      Response<Set<String>> range = pipeline.zrevrangeByScore("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
       Set<String> expected = new LinkedHashSet<String>();
-      expected.add("c");
+      expected.add("a");
       pipeline.sync();
       assertEquals(expected, range.get());
-
     }
 
     // zrangeByScoreWithScores
@@ -704,7 +703,7 @@ public class PipeliningTest extends Assert {
     // zrangeByScoreWithScores with offset and count
     {
       Pipeline pipeline = jedis.pipelined();
-      Response<Set<Tuple>> range = pipeline.zrangeByScoreWithScores("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
+      Response<Set<Tuple>> range = pipeline.zrangeByScoreWithScores("foo", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1, 1);
       Set<Tuple> expected = new LinkedHashSet<Tuple>();
       expected.add(new Tuple("a", 2d));
       pipeline.sync();
@@ -714,7 +713,7 @@ public class PipeliningTest extends Assert {
     // zrevrangeByScoreWithScores
     {
       Pipeline pipeline = jedis.pipelined();
-      Response<Set<Tuple>> range = pipeline.zrevrangeByScoreWithScores("bar", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
+      Response<Set<Tuple>> range = pipeline.zrevrangeByScoreWithScores("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
       Set<Tuple> expected = new LinkedHashSet<Tuple>();
       expected.add(new Tuple("b", 10d));
       expected.add(new Tuple("a", 2d));
@@ -725,7 +724,7 @@ public class PipeliningTest extends Assert {
     // zrevrangeByScoreWithScores with offset and count
     {
       Pipeline pipeline = jedis.pipelined();
-      Response<Set<Tuple>> range = pipeline.zrevrangeByScoreWithScores("bar", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
+      Response<Set<Tuple>> range = pipeline.zrevrangeByScoreWithScores("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
       Set<Tuple> expected = new LinkedHashSet<Tuple>();
       expected.add(new Tuple("a", 2d));
       pipeline.sync();

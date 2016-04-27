@@ -387,9 +387,9 @@ public class TransactionCommandsTest extends JedisCommandTestBase {
     // zrevrangeByScore with offset and count
     {
       Transaction transaction = jedis.multi();
-      Response<Set<String>> range = transaction.zrevrangeByScore("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 0, 1);
+      Response<Set<String>> range = transaction.zrevrangeByScore("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
       Set<String> expected = new LinkedHashSet<String>();
-      expected.add("c");
+      expected.add("a");
       transaction.exec();
       assertEquals(expected, range.get());
 
@@ -409,7 +409,7 @@ public class TransactionCommandsTest extends JedisCommandTestBase {
     // zrangeByScoreWithScores with offset and count
     {
       Transaction transaction = jedis.multi();
-      Response<Set<Tuple>> range = transaction.zrangeByScoreWithScores("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
+      Response<Set<Tuple>> range = transaction.zrangeByScoreWithScores("foo", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1, 1);
       Set<Tuple> expected = new LinkedHashSet<Tuple>();
       expected.add(new Tuple("a", 2d));
       transaction.exec();
@@ -419,7 +419,7 @@ public class TransactionCommandsTest extends JedisCommandTestBase {
     // zrevrangeByScoreWithScores
     {
       Transaction transaction = jedis.multi();
-      Response<Set<Tuple>> range = transaction.zrevrangeByScoreWithScores("bar", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
+      Response<Set<Tuple>> range = transaction.zrevrangeByScoreWithScores("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
       Set<Tuple> expected = new LinkedHashSet<Tuple>();
       expected.add(new Tuple("b", 10d));
       expected.add(new Tuple("a", 2d));
@@ -430,7 +430,7 @@ public class TransactionCommandsTest extends JedisCommandTestBase {
     // zrevrangeByScoreWithScores with offset and count
     {
       Transaction transaction = jedis.multi();
-      Response<Set<Tuple>> range = transaction.zrevrangeByScoreWithScores("bar", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
+      Response<Set<Tuple>> range = transaction.zrevrangeByScoreWithScores("foo", Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, 1, 1);
       Set<Tuple> expected = new LinkedHashSet<Tuple>();
       expected.add(new Tuple("a", 2d));
       transaction.exec();
