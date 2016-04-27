@@ -637,7 +637,7 @@ public class PipeliningTest extends Assert {
     jedis.zadd("foo", 1d, "a");
     jedis.zadd("foo", 10d, "b");
     jedis.zadd("foo", 0.1d, "c");
-    jedis.zadd("foo", 2d, "d");
+    jedis.zadd("foo", 2d, "a");
 
     // zcount
     {
